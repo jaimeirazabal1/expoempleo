@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
+  <title>
+  <?php if (isset($titulo)): ?>
+    <?php echo $titulo; ?>
+  <?php else: ?>
+    Cartera de trabajadores
+  <?php endif ?>
+  </title>
+  <link rel="stylesheet" href="<?php echo PUBLIC_PATH.'bootstrap/css/bootstrap.css' ?>">
+  <?php echo Html::includeCss() ?>
+  <?php echo Tag::js('jquery/jquery.min') ?>
+  <script type="text/javascript" src="<?php echo PUBLIC_PATH.'bootstrap/js/bootstrap.js' ?>"></script>
+</head>
+<body>
+<?php echo View::content() ?>
+</body>
+</html>

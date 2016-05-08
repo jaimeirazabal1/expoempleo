@@ -1,0 +1,60 @@
+<?php View::content() ?>
+<script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.0.2/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.0.2/js/responsive.bootstrap.min.js"></script>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.0.2/css/responsive.bootstrap.min.css">
+<table class="table">
+	<thead>
+		<th>#</th>
+		<th>Usuario</th>
+		<th>Rol</th>
+		<th></th>
+	</thead>
+	<?php $count=1 ?>
+	<?php foreach ($usuarios as $key => $value): ?>
+		<tr>
+			<td><?php echo $count ?></td>
+			<td><?php echo $value->username ?></td>
+			<?php if ($value->rol == "A"): ?>
+				<td>Administrador</td>
+			<?php else: ?>
+				<td>Usuario</td>
+			<?php endif ?>
+			<td><?php echo Html::link("usuarios/asignar/{$value->id}","Asignar") ?></td>
+			<?php $count++ ?>
+		</tr>
+	<?php endforeach ?>
+</table>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $('.table').DataTable({
+	    	language:{
+			    "sProcessing":     "Procesando...",
+			    "sLengthMenu":     "Mostrar _MENU_ registros",
+			    "sZeroRecords":    "No se encontraron resultados",
+			    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+			    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+			    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+			    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+			    "sInfoPostFix":    "",
+			    "sSearch":         "Buscar:",
+			    "sUrl":            "",
+			    "sInfoThousands":  ",",
+			    "sLoadingRecords": "Cargando...",
+			    "oPaginate": {
+			        "sFirst":    "Primero",
+			        "sLast":     "Último",
+			        "sNext":     "Siguiente",
+			        "sPrevious": "Anterior"
+			    },
+			    "oAria": {
+			        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+			        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+			    }
+			}
+	    });
+	});
+</script>
