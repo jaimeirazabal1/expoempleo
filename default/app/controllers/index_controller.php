@@ -18,7 +18,11 @@ class IndexController extends AppController
  
             $auth = new Auth("model", "class: usuarios", "username: $usuario", "password: $pwd");
             if ($auth->authenticate()) {
-                Router::redirect("usuarios/dashboard");
+                if (Auth::get("terminos")) {
+                    Router::redirect("usuarios/dashboard");
+                }else{
+                    Router::redirect("pages/terminos");
+                }
             } else {
                 Flash::error("Nombre de usuario o contraseña inválidos");
             }

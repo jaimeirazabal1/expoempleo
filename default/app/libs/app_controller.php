@@ -22,7 +22,7 @@ class AppController extends Controller
         $this->ruta_archivos = getcwd().'/files/uploads/archivos/';
         $this->ruta_descarga = '/files/uploads/archivos/';
     	$ruta = Router::get("controller").'/'.Router::get('action');
-    	$rutas_publicas = array('index/index','index/logout');
+    	$rutas_publicas = array('index/index','index/logout','pages/terminos');
     	if (!Auth::is_valid()) {
     
     		if (!in_array($ruta, $rutas_publicas)) {

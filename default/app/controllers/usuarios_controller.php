@@ -27,6 +27,20 @@ class UsuariosController Extends AppController{
 	}
 	public function dashboard(){
 		$this->titulo = 'Escritorio de Usuario';
+		if (Input::hasPost('terminos')) {
+			if (Input::post("terminos") == 'acepto') {
+				$usuario = Load::model("usuarios")->find(Auth::get("id"));
+				$usuario->terminos = true;
+				$usuario->fecha_terminos = date("Y-m-d H:i:s");
+				$usuario->ip = $_SERVER['REMOTE_ADDR'];
+				if (!$usuario->update()) {
+					Flash::error("Error actualizando los terminos y servicios!");
+				}
+			}else{
+				Flash::info("Para iniciar sesión en el sistema, debe estar de acuerdo con los terminos y condiciones.");
+				Router::redirect('usuarios/logout');
+			}
+		}
 	}
 	public function asignar($usuario_id){
 		$usuario = new Usuarios();
